@@ -56,4 +56,10 @@ public class PostsService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public void delete(Long id){
+        Posts posts = postsRepository.findById(id).get();
+        postsRepository.delete(posts);
+    }
+
 }
