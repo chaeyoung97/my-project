@@ -2,6 +2,7 @@ package com.example.myproject.web;
 
 import com.example.myproject.service.PostsService;
 import com.example.myproject.web.dto.PostsSaveRequestDto;
+import com.example.myproject.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,4 +18,6 @@ public class PostsApiController {
         return postsService.save(requestDto);
     }
 
+    @PutMapping("/{id}")
+    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){ return postsService.update(id, requestDto); }
 }
