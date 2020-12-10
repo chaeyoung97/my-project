@@ -1,5 +1,6 @@
 package com.example.myproject.domain.questions;
 
+import com.example.myproject.domain.SuperTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Questions {
+public class Questions extends SuperTimeEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

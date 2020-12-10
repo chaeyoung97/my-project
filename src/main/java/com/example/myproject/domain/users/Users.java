@@ -1,5 +1,6 @@
 package com.example.myproject.domain.users;
 
+import com.example.myproject.domain.SuperTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Users {
+public class Users extends SuperTimeEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
