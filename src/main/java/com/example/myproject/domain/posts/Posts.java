@@ -24,6 +24,7 @@ public class Posts extends SuperTimeEntity {
     @Column(nullable = false)
     private String content;
 
+    @Column(nullable = false)
     private String writer;
 
     @Builder

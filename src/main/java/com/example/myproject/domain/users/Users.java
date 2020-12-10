@@ -2,13 +2,11 @@ package com.example.myproject.domain.users;
 
 import com.example.myproject.domain.SuperTimeEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
+@ToString
 @NoArgsConstructor
 @Getter
 @Entity
@@ -22,7 +20,7 @@ public class Users extends SuperTimeEntity {
     private String userId;
 
     @JsonIgnore
-    @Getter(AccessLevel.NONE)
+    //@Getter(AccessLevel.NONE)
     private String password;
 
     @Column(nullable = false)
@@ -33,5 +31,10 @@ public class Users extends SuperTimeEntity {
         this.userId = userId;
         this.password = password;
         this.email = email;
+    }
+
+    public void update(String userId, String email){
+        this.userId= userId;
+        this.email =email;
     }
 }

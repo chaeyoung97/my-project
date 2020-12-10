@@ -14,32 +14,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     private final PostsService postsService;
+
     @GetMapping("")
-    public String home(Model model){
+    public String home(Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
         return "/home";
     }
 
     @GetMapping("/posts/save")
-    public String postsSave(){
+    public String postsSave() {
         return "/post/form";
     }
 
     @GetMapping("/posts/{id}")
-    public String show(@PathVariable Long id, Model model){
+    public String show(@PathVariable Long id, Model model) {
         model.addAttribute("posts", postsService.findById(id));
         return "/post/show";
     }
 
+
     @GetMapping("/posts/search")
-    public String search(@RequestParam String keyword, Model model){
+    public String search(@RequestParam String keyword, Model model) {
         model.addAttribute("posts", postsService.searchPosts(keyword));
         return "/post/search";
     }
 
     @GetMapping("/posts/update/{id}")
-    public String update(@PathVariable Long id, Model model){
+    public String update(@PathVariable Long id, Model model) {
         model.addAttribute("posts", postsService.findById(id));
         return "/post/updateForm";
     }
 }
+
