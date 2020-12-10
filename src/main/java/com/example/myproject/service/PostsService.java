@@ -48,4 +48,12 @@ public class PostsService {
                 .map(posts -> new PostsListsResponseDto(posts)) //Posts의 Stream을 map을 통해 PostListResponseDto로 변환 -> List로 반환함
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<PostsListsResponseDto> searchPosts(String keyword){
+        return postsRepository.findByContentContainingIgnoreCaseOrTitleContainingIgnoreCaseOrderByCreatedDateDesc(keyword, keyword).stream()
+                .map(posts -> new PostsListsResponseDto(posts))
+                .collect(Collectors.toList());
+    }
+
 }
