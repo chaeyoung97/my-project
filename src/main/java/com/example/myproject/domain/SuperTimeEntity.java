@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @MappedSuperclass   //JAP entity클래스들이 supertimeentity를 상속할 경우 이 클래스의 필드들도 칼럼으로 인식하도록 함
@@ -19,4 +20,19 @@ public abstract class SuperTimeEntity {
 
     @LastModifiedDate   //조회한 entity의 값을 변견할 때 시간이 자동 저장 됨
     private LocalDateTime modifiedDate;
+
+    public String getFormattedCreatedDate(){
+        return getFormattedDate(createdDate, "yyyy.MM.dd HH:mm:ss");
+    }
+
+    public String getFormattedModifiedDate(){
+        return getFormattedDate(modifiedDate, "yyyy.MM.dd HH:mm:ss");
+    }
+
+    private String getFormattedDate(LocalDateTime dateTime, String format){
+        if(dateTime == null)
+            return "";
+        return dateTime.format(DateTimeFormatter.ofPattern(format));
+
+    }
 }

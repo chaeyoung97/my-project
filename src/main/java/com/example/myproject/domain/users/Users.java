@@ -1,6 +1,7 @@
 package com.example.myproject.domain.users;
 
 import com.example.myproject.domain.SuperTimeEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class Users extends SuperTimeEntity {
     @Column(nullable = false)
     private String userId;
 
+    @JsonIgnore
     @Getter(AccessLevel.NONE)
     private String password;
 
