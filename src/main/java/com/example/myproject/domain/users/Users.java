@@ -23,15 +23,11 @@ public class Users {
     private String password;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
     private String email;
 
     @Builder
-    public Users(String userId, String name, String password, String email){
+    public Users(String userId,String password, String email){
         this.userId = userId;
-        this.name= name;
         this.password = password;
         this.email = email;
     }

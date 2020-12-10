@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersApiController {
     private final UsersService usersService;
 
-    @PostMapping("/login")
+    @PostMapping("/signup")
     public Long login(@RequestBody UsersSaveRequestDto usersSaveRequestDto){
         return usersService.save(usersSaveRequestDto);
     }

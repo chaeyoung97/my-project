@@ -31,19 +31,19 @@ public class PostsApiControllerTest {
     private PostsRepository postsRepository;
 
     @After
-    public void tearDown() throws Exception{
+    public void cleanUp() throws Exception{
         postsRepository.deleteAll();
     }
 
     @Test
-    public void Posts_등록된다() throws Exception{
+    public void 글_등록() throws Exception{
         //given
         String title = "title";
         String content = "content";
         PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
                 .title(title)
                 .content(content)
-                .author("author")
+                .writer("author")
                 .build();
 
         String url = "http://localhost:" + port + "/api/posts";

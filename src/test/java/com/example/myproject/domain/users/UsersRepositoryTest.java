@@ -27,11 +27,10 @@ public class UsersRepositoryTest {
     public void 사용자등록_불러오기(){
         //given
         String userId = "spring";
-        String name = "테스트 사용자";
         String password = "1111";
         String email = "111@email.com";
 
-        usersRepository.save(Users.builder().userId(userId).name(name).password(password).email(email).build());
+        usersRepository.save(Users.builder().userId(userId).password(password).email(email).build());
 
         //when
         List<Users> usersList = usersRepository.findAll();
@@ -39,7 +38,6 @@ public class UsersRepositoryTest {
         //then
         Users users = usersList.get(0);
         assertThat(users.getUserId()).isEqualTo(userId);
-        assertThat(users.getName()).isEqualTo(name);
         assertThat(users.getEmail()).isEqualTo(email);
 
     }
