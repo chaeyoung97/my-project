@@ -33,8 +33,8 @@ public class Posts{
     }
 }
 //@Getter
-//@NoArgsConstructor//기본 생성자 자동 추가 기능 public Posts(){}
-//@Entity // entitiy클래스에는 절!!!대!!!! setter메소드를 생성하지 않는다1!!!!!!!!!!
+//@NoArgsConstructor//?? ??? ?? ?? ?? public Posts(){}
+//@Entity // entitiy????? ?!!!?!!!! setter???? ???? ???1!!!!!!!!!!
 //public class Posts {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
