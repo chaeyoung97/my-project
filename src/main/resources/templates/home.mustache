@@ -22,16 +22,20 @@
             <th>게시글번호</th>
             <th>제목</th>
             <th>작성자</th>
+            <th>게시글등록일</th>
             <th>최종수정일</th>
+            <th>댓글수</th>
         </tr>
         </thead>
         <tbody id="tbody">
         {{#posts}}
             <tr>
                 <td>{{id}}</td>
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td></td>
+                <td><a href="/posts/{{id}}">{{title}}</a></td>
+                <td>{{writer}}</td>
+                <td>{{createdDate}}</td>
                 <td>{{modifiedDate}}</td>
+                <td></td>
             </tr>
         {{/posts}}
         </tbody>

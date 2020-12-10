@@ -16,7 +16,7 @@ var main = {
     save : function () {
         var data = {
             title: $('#title').val(),
-            author: $('#author').val(),
+            writer: $('#writer').val(),
             content: $('#content').val()
         };
 
@@ -33,9 +33,11 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+
     update : function () {
         var data = {
             title: $('#title').val(),
+            writer: $('#writer').val(),
             content: $('#content').val()
         };
 
@@ -43,7 +45,7 @@ var main = {
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts/'+id,
+            url: '/api/posts/'+id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -59,7 +61,7 @@ var main = {
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/posts/'+id,
+            url: '/api/posts/'+id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
