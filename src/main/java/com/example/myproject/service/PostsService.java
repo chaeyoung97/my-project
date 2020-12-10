@@ -2,12 +2,16 @@ package com.example.myproject.service;
 
 import com.example.myproject.domain.posts.Posts;
 import com.example.myproject.domain.posts.PostsRepository;
+import com.example.myproject.web.dto.PostsListsResponseDto;
 import com.example.myproject.web.dto.PostsResponseDto;
 import com.example.myproject.web.dto.PostsSaveRequestDto;
 import com.example.myproject.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +40,12 @@ public class PostsService {
     public PostsResponseDto findById(Long id){
         Posts posts = postsRepository.findById(id).get();
         return new PostsResponseDto(posts);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListsResponseDto> findAllDesc(){
+        return postsRepository.findAllDesc().stream()
+                .map(posts -> new PostsListsResponseDto(posts)) //Posts의 Stream을 map을 통해 PostListResponseDto로 변환 -> List로 반환함
+                .collect(Collectors.toList());
     }
 }
