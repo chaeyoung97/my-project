@@ -1,6 +1,7 @@
 package com.example.myproject.web;
 
 import com.example.myproject.service.PostsService;
+import com.example.myproject.web.dto.PostsResponseDto;
 import com.example.myproject.web.dto.PostsSaveRequestDto;
 import com.example.myproject.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -20,4 +21,9 @@ public class PostsApiController {
 
     @PutMapping("/{id}")
     public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){ return postsService.update(id, requestDto); }
+
+    @GetMapping("/{id}")
+    public PostsResponseDto findById(@PathVariable Long id){
+        return postsService.findById(id);
+    }
 }

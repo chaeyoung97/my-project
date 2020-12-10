@@ -2,6 +2,7 @@ package com.example.myproject.service;
 
 import com.example.myproject.domain.posts.Posts;
 import com.example.myproject.domain.posts.PostsRepository;
+import com.example.myproject.web.dto.PostsResponseDto;
 import com.example.myproject.web.dto.PostsSaveRequestDto;
 import com.example.myproject.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,10 @@ public class PostsService {
         //이 상태에서 해당 데이터의 값을 변경하면 트랜젝션이 끝나는 시점에 해당 테이블에 변경분을 반영한다.
         //##############즉 entity 객체 값만 변경하면 별도로 update 쿼리를 날릴 필요가 없다는 것이다.################
         //이 개념을 더티 체킹 dirty checking 이라고 함
+    }
+
+    public PostsResponseDto findById(Long id){
+        Posts posts = postsRepository.findById(id).get();
+        return new PostsResponseDto(posts);
     }
 }
