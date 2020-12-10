@@ -34,7 +34,12 @@ public class HomeController {
     @GetMapping("/posts/search")
     public String search(@RequestParam String keyword, Model model){
         model.addAttribute("posts", postsService.searchPosts(keyword));
-        System.out.println("gg");
         return "/post/search";
+    }
+
+    @GetMapping("/posts/update/{id}")
+    public String update(@PathVariable Long id, Model model){
+        model.addAttribute("posts", postsService.findById(id));
+        return "/post/updateForm";
     }
 }
