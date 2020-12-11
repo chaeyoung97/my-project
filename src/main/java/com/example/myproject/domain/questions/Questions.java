@@ -16,6 +16,10 @@ public class Questions extends SuperTimeEntity {
     @Id
     private Long id;
 
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_questions_posts"))
+    @Column(nullable = false)
+    private Long postId;
+
     @Column(nullable = false)
     private String writer;
 
@@ -23,7 +27,8 @@ public class Questions extends SuperTimeEntity {
     private String content;
 
     @Builder
-    public Questions(String writer, String content){
+    public Questions(String writer, String content,Long postId){
+        this.postId = postId;
         this.writer = writer;
         this.content = content;
     }

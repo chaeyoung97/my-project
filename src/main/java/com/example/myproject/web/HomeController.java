@@ -23,40 +23,5 @@ public class HomeController {
         model.addAttribute("posts", postsService.findAllDesc());
         return "/home";
     }
-
-    @GetMapping("/posts/save")
-    public String postsSave() {
-        return "/post/form";
-    }
-
-    @GetMapping("/posts/{id}")
-    public String show(@PathVariable Long id, Model model) {
-        model.addAttribute("posts", postsService.findById(id));
-        return "/post/show";
-    }
-
-
-    @GetMapping("/posts/search")
-    public String search(@RequestParam String keyword, Model model) {
-        model.addAttribute("posts", postsService.searchPosts(keyword));
-        return "/post/search";
-    }
-
-    @GetMapping("/posts/update/{id}")
-    public String update(@PathVariable Long id, Model model, HttpSession session) {
-        if(!HttpUtils.getUserFromSession(session).getId().equals(id)){
-            return "redirect:/";
-        }
-        model.addAttribute("posts", postsService.findById(id));
-        return "/post/updateForm";
-    }
-    @GetMapping("/posts/delete/{id}")
-    public String delete(@PathVariable Long id, HttpSession session){
-        if(!HttpUtils.getUserFromSession(session).getId().equals(id)){
-            return "redirect:/";
-        }
-        postsService.delete(id);
-        return "redirect:/";
-    }
 }
 
