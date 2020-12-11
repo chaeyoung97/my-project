@@ -1,5 +1,6 @@
 package com.example.myproject.web;
 
+import com.example.myproject.HttpUtils;
 import com.example.myproject.service.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Controller
@@ -40,9 +43,20 @@ public class HomeController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String update(@PathVariable Long id, Model model, HttpSession session) {
+        if(!HttpUtils.getUserFromSession(session).getId().equals(id)){
+            return "redirect:/";
+        }
         model.addAttribute("posts", postsService.findById(id));
         return "/post/updateForm";
+    }
+    @GetMapping("/posts/delete/{id}")
+    public String delete(@PathVariable Long id, HttpSession session){
+        if(!HttpUtils.getUserFromSession(session).getId().equals(id)){
+            return "redirect:/";
+        }
+        postsService.delete(id);
+        return "redirect:/";
     }
 }
 
